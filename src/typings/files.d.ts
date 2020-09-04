@@ -28,6 +28,12 @@ declare module '*.png' {
   export default path
 }
 
+// declare module '*.scss'
+// {
+//   const path: string
+//   export default path
+// }
+
 declare interface NodeModule {
   hot: {
     accept(path?: () => void, callback?: () => void): void
