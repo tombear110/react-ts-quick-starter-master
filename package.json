@@ -53,7 +53,7 @@
   "bugs": {
     "url": "https://github.com/vortesnail/react-ts-quick-starter/issues"
   },
-  "homepage": "https://github.com/vortesnail/react-ts-quick-starter#readme",
+  "homepage": "/",
   "devDependencies": {
     "@babel/core": "^7.10.5",
     "@babel/plugin-transform-runtime": "^7.11.0",
@@ -125,6 +125,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
     "antd": "^4.6.2",
+    "normalize.css": "^8.0.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",

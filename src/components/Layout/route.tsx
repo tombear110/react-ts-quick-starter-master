@@ -1,5 +1,5 @@
-import React, { Suspense } from 'react'
-import { Route, BrowserRouter as Router, Switch } from 'react-router-dom'
+import React from 'react'
+import { Route, Switch } from 'react-router-dom'
 
 const Home = React.lazy(() => import('Src/pages/home'))
 const Users = React.lazy(() => import('Src/pages/users'))
@@ -8,16 +8,12 @@ const Notfound = React.lazy(() => import('Src/pages/not-found'))
 
 const RouteElement = () => {
   return (
-    <Suspense fallback={<div>loading...</div>}>
-      <Router>
-        <Switch>
-          <Route exact path='/' component={Home} />
-          <Route path='/users' component={Users} />
-          <Route path='/contact' component={Contact} />
-          <Route component={Notfound} />
-        </Switch>
-      </Router>
-    </Suspense>
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route path='/users' component={Users} />
+      <Route path='/contact' component={Contact} />
+      <Route component={Notfound} />
+    </Switch>
   )
 }
 

@@ -1,20 +1,31 @@
 @import '~antd/dist/antd.css';
+@import '~normalize.css';
 
 html,
-body {
+body,
+p,
+ol,
+ul,
+li,
+dl,
+dt,
+dd,
+blockquote,
+figure,
+fieldset,
+legend,
+textarea,
+pre,
+iframe,
+hr,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   margin: 0;
-}
-
-#root {
-  display: flex;
-  align-items: center;
-  color: #fff;
-  background-color: lightcoral;
-}
-
-.app {
-  padding: 10px;
-  background-color: lightskyblue;
+  padding: 0;
 }
 
 .active {

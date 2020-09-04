@@ -1,13 +1,28 @@
-import React, { useState } from 'react'
-import { Layout } from 'antd'
+import React, { useState, Suspense } from 'react'
+import { Route, HashRouter as Router, Switch } from 'react-router-dom'
+import { Layout, Spin } from 'antd'
 import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons'
 
-import RouteElement from './route'
 import SiderElement from './sider'
 
 import './index.scss'
 
 const { Header, Content } = Layout
+
+const RouteElement = () => {
+  const Home = React.lazy(() => import('Src/pages/home'))
+  const Users = React.lazy(() => import('Src/pages/users'))
+  const Contact = React.lazy(() => import('Src/pages/contact'))
+  const Notfound = React.lazy(() => import('Src/pages/not-found'))
+  return (
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route path='/users' component={Users} />
+      <Route path='/contact' component={Contact} />
+      <Route component={Notfound} />
+    </Switch>
+  )
+}
 
 const LayoutElement = () => {
   const [collapsed, setCollapsed] = useState(false)
@@ -32,23 +47,32 @@ const LayoutElement = () => {
     collapsed,
   }
 
+  const suspenseProps = {
+    fallback: <Spin />,
+    maxDuration: 500,
+  }
+
   return (
-    <Layout className='main'>
-      <SiderElement {...siderProps} />
-      {HeaderElement}
-      <Layout className='site-layout'>
-        <Content
-          className='site-layout-background'
-          style={{
-            margin: '24px 16px',
-            padding: 24,
-            minHeight: 280,
-          }}
-        >
-          <RouteElement />
-        </Content>
-      </Layout>
-    </Layout>
+    <Suspense {...suspenseProps}>
+      <Router>
+        <Layout className='layout'>
+          <SiderElement {...siderProps} />
+          <Layout className='site-layout'>
+            {HeaderElement}
+            <Content
+              className='site-layout-background'
+              style={{
+                margin: '24px 16px',
+                padding: 24,
+                minHeight: 280,
+              }}
+            >
+              <RouteElement />
+            </Content>
+          </Layout>
+        </Layout>
+      </Router>
+    </Suspense>
   )
 }
 
